@@ -28,8 +28,8 @@ function App() {
       <div>
       <UserProfile 
         name="Alice" 
-        age={25} 
-        bio="Software developer who loves hiking and photography." 
+        age="25" 
+        bio="Loves hiking and photography" 
       />
     </div>
       <h1>Vite + React</h1>

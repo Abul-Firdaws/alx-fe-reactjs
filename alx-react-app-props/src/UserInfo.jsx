@@ -1,5 +1,5 @@
-import React from 'react';
-import UserProfile from './UserProfile';
+import React from "react";
+import UserProfile from "./UserProfile";
 
 function UserInfo() {
   return <UserProfile />;

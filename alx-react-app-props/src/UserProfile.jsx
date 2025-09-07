@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
-import UserContext from './UserContext';
+// src/UserProfile.jsx
+import React, { useContext } from "react";
+import UserContext from "./UserContext";
 
 function UserProfile() {
-  // Use useContext to get userData from context
-  const userData = useContext(UserContext);
+  const user = useContext(UserContext);
 
   return (
     <div>
-      <p>Name: {userData.name}</p>
-      <p>Email: {userData.email}</p>
+      <h2>Name: {user.name}</h2>
+      <p>Email: {user.email}</p>
     </div>
   );
 }

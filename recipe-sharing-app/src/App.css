@@ -1,64 +1,104 @@
-/* Container for the whole app */
-.app-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+/* App.css */
+
+/* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
   font-family: 'Arial', sans-serif;
-  background-color: #f5f6fa;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  color: #333;
 }
 
-/* App title */
-.app-title {
+h1 {
   text-align: center;
   color: #6c63ff;
   margin-bottom: 20px;
-  font-size: 2rem;
 }
 
-/* Search bar input */
+/* Container */
+div#root > div {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+/* SearchBar */
 input[type="text"] {
-  width: calc(100% - 120px);
+  width: calc(100% - 20px);
   padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-  font-size: 1rem;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-/* Add recipe button */
-button {
-  padding: 10px 15px;
+input[type="text"]:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 5px rgba(108, 99, 255, 0.3);
+  outline: none;
+}
+
+/* AddRecipeForm */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+form input[type="text"] {
+  width: 100%;
+}
+
+form button {
+  padding: 10px;
   background-color: #6c63ff;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  background-color: #574fd6;
+form button:hover {
+  background-color: #5a52d4;
 }
 
-/* Recipe list container */
+/* RecipeList */
 .recipe-list {
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-/* Individual recipe item */
 .recipe-item {
   padding: 15px;
-  margin-bottom: 10px;
-  background-color: #fff;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background-color: #fafafa;
+  transition: all 0.3s ease;
 }
 
-/* No recipes message */
-.no-recipes {
-  text-align: center;
-  color: #888;
-  font-style: italic;
+.recipe-item:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.recipe-item h3 {
+  margin: 0 0 8px 0;
+  color: #6c63ff;
+}
+
+.recipe-item p {
+  margin: 0;
+  color: #555;
+}
+.recipe-item h3, 
+.recipe-item h3 * {
+  text-decoration: none !important;
 }

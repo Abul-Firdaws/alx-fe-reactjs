@@ -24,6 +24,7 @@ const AddRecipeForm = () => {
     // Clear form
     setTitle('');
     setDescription('');
+    alert('Recipe added successfully!');
   };
 
   return (
@@ -33,8 +34,7 @@ const AddRecipeForm = () => {
         display: 'flex', 
         flexDirection: 'column', 
         gap: '10px',
-        maxWidth: '400px',
-        margin: '0 auto'
+        maxWidth: '400px'
       }}>
         <input
           type="text"
@@ -63,7 +63,7 @@ const AddRecipeForm = () => {
           type="submit"
           style={{
             padding: '10px',
-            backgroundColor: '#007bff',
+            backgroundColor: '#28a745',
             color: 'white',
             border: 'none',
             borderRadius: '4px',

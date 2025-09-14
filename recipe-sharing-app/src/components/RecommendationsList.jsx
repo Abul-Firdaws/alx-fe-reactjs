@@ -1,10 +1,9 @@
 import { useRecipeStore } from './recipeStore';
 
 const RecommendationsList = () => {
-  const { recommendations, generateRecommendations } = useRecipeStore(state => ({
-    recommendations: state.recommendations,
-    generateRecommendations: state.generateRecommendations
-  }));
+  // FIXED: Separate state selection from action selection
+  const recommendations = useRecipeStore(state => state.recommendations);
+  const generateRecommendations = useRecipeStore(state => state.generateRecommendations);
 
   const handleGenerateRecommendations = () => {
     generateRecommendations();

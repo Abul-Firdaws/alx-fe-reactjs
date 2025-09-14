@@ -3,28 +3,20 @@ import { Link } from 'react-router-dom';
 import { useRecipeStore } from './recipeStore';
 
 const RecipeList = () => {
-  const { 
-    recipes, 
-    filteredRecipes, 
-    searchTerm, 
-    favorites,
-    initializeFilters, 
-    addFavorite, 
-    removeFavorite 
-  } = useRecipeStore(state => ({
-    recipes: state.recipes,
-    filteredRecipes: state.filteredRecipes,
-    searchTerm: state.searchTerm,
-    favorites: state.favorites,
-    initializeFilters: state.initializeFilters,
-    addFavorite: state.addFavorite,
-    removeFavorite: state.removeFavorite
-  }));
+  // TEMPORARY WORKAROUND: Split the store selectors to avoid the infinite loop
+  // This prevents the store from re-creating all selectors at once
+  const recipes = useRecipeStore(state => state.recipes);
+  const filteredRecipes = useRecipeStore(state => state.filteredRecipes);
+  const searchTerm = useRecipeStore(state => state.searchTerm);
+  const favorites = useRecipeStore(state => state.favorites);
+  const initializeFilters = useRecipeStore(state => state.initializeFilters);
+  const addFavorite = useRecipeStore(state => state.addFavorite);
+  const removeFavorite = useRecipeStore(state => state.removeFavorite);
 
   // Initialize filtered recipes when component mounts
   useEffect(() => {
     initializeFilters();
-  }, [initializeFilters]);
+  }, []); // Empty dependency array
 
   // Determine which recipes to display
   const recipesToDisplay = searchTerm ? filteredRecipes : recipes;
@@ -109,11 +101,15 @@ const RecipeList = () => {
           )}
         </div>
       ) : (
-        <div style={{ 
-          display: 'grid', 
-          gap: '16px',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))'
-        }}>
+        <div 
+          style={{ 
+            display: 'grid', 
+            gap: '16px',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))'
+          }}
+          // Fix for CSS @media warning: Remove any @media styles from inline styles
+          // @media queries don't work in inline styles - use CSS classes or JS logic instead
+        >
           {recipesToDisplay.map(recipe => {
             const isFavorite = favorites.includes(recipe.id);
             

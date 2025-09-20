@@ -37,15 +37,8 @@ function App() {
               </header>
               
               <main>
-                <div style={{ 
-                  display: 'grid', 
-                  gap: '30px',
-                  gridTemplateColumns: '300px 1fr 300px',
-                  marginBottom: '30px',
-                  '@media (max-width: 1200px)': {
-                    gridTemplateColumns: '1fr'
-                  }
-                }}>
+                {/* ✅ Replaced inline @media with CSS class */}
+                <div className="layout">
                   {/* Left Sidebar - Add Recipe Form */}
                   <aside style={{
                     backgroundColor: '#f8f9fa',
@@ -105,4 +98,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

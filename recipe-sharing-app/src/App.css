@@ -675,3 +675,26 @@ a:hover {
     color: #fff3cd;
   }
 }
+
+/* Style all search highlights (<mark> tags) */
+mark {
+  background: linear-gradient(120deg, #fff3cd 0%, #ffeaa7 100%);
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+  color: #856404;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.layout {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 300px 1fr 300px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 1200px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

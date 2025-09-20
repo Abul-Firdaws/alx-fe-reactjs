@@ -24,8 +24,7 @@ const AddRecipeForm = () => {
         onChange={(e) => setTitle(e.target.value)}
         className="input-field"
       />
-      <input
-        type="text"
+      <textarea
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}

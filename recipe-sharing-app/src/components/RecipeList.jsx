@@ -102,13 +102,12 @@ const RecipeList = () => {
         </div>
       ) : (
         <div 
+          className="recipe-grid"  
           style={{ 
             display: 'grid', 
             gap: '16px',
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))'
           }}
-          // Fix for CSS @media warning: Remove any @media styles from inline styles
-          // @media queries don't work in inline styles - use CSS classes or JS logic instead
         >
           {recipesToDisplay.map(recipe => {
             const isFavorite = favorites.includes(recipe.id);

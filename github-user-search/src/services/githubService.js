@@ -3,13 +3,48 @@ import axios from "axios";
 const BASE_URL = "https://api.github.com/users";
 const SEARCH_URL = "https://api.github.com/search/users?q";
 
+// Configure axios with timeout and interceptors for production
+const githubAPI = axios.create({
+  timeout: 10000, // 10 second timeout
+  headers: {
+    'Accept': 'application/vnd.github.v3+json',
+  }
+});
+
+// Add response interceptor for better error handling
+githubAPI.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // Handle rate limiting gracefully
+    if (error.response?.status === 403) {
+      const rateLimitReset = error.response.headers['x-ratelimit-reset'];
+      const resetTime = rateLimitReset ? new Date(rateLimitReset * 1000).toLocaleTimeString() : 'later';
+      throw new Error(`GitHub API rate limit exceeded. Try again at ${resetTime}`);
+    }
+    
+    // Handle network errors
+    if (!error.response) {
+      throw new Error('Network error. Please check your internet connection.');
+    }
+    
+    throw error;
+  }
+);
+
 // Original function for basic user search (maintaining compatibility)
 export async function fetchUserData(username) {
-  const response = await axios.get(`${BASE_URL}/${username}`);
-  return response.data;
+  try {
+    const response = await githubAPI.get(`${BASE_URL}/${username}`);
+    return response.data;
+  } catch (error) {
+    if (error.response?.status === 404) {
+      throw new Error('User not found');
+    }
+    throw error;
+  }
 }
 
-// New function for advanced search
+// New function for advanced search with enhanced error handling
 export async function searchUsers(searchParams) {
   try {
     // Build query string based on search parameters
@@ -43,26 +78,50 @@ export async function searchUsers(searchParams) {
     
     // Make API request with pagination support
     const params = {
-      per_page: searchParams.perPage || 10,
-      page: searchParams.page || 1,
+      per_page: Math.min(searchParams.perPage || 10, 100), // GitHub max is 100
+      page: Math.max(searchParams.page || 1, 1), // Ensure page is at least 1
       sort: 'best-match' // You can also use 'followers', 'repositories', 'joined'
     };
     
-    const response = await axios.get(`${SEARCH_URL}${encodeURIComponent(queryString)}`, { params });
-    return response.data;
+    const response = await githubAPI.get(`${SEARCH_URL}${encodeURIComponent(queryString)}`, { params });
+    
+    // Ensure we return a consistent structure
+    return {
+      items: response.data.items || [],
+      total_count: response.data.total_count || 0,
+      incomplete_results: response.data.incomplete_results || false
+    };
   } catch (error) {
-    console.error('Search users error:', error);
-    throw error;
+    // Enhanced error handling for production
+    if (error.message.includes('rate limit')) {
+      throw error; // Re-throw rate limit errors with custom message
+    }
+    
+    if (error.response?.status === 422) {
+      throw new Error('Invalid search query. Please check your search criteria.');
+    }
+    
+    if (error.response?.status === 503) {
+      throw new Error('GitHub service is temporarily unavailable. Please try again later.');
+    }
+    
+    // Generic error for production
+    throw new Error('Search failed. Please try again.');
   }
 }
 
-// Helper function to get detailed user info (for when you need more details)
+// Helper function to get detailed user info with error handling
 export async function getUserDetails(username) {
   try {
-    const response = await axios.get(`${BASE_URL}/${username}`);
+    const response = await githubAPI.get(`${BASE_URL}/${username}`);
     return response.data;
   } catch (error) {
-    console.error('Get user details error:', error);
-    throw error;
+    if (error.response?.status === 404) {
+      throw new Error('User not found');
+    }
+    if (error.message.includes('rate limit')) {
+      throw error;
+    }
+    throw new Error('Failed to fetch user details');
   }
 }

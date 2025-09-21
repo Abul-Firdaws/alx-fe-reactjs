@@ -33,6 +33,7 @@ function Search() {
       setUserData(data);
     } catch (err) {
       setError("Looks like we cant find the user");
+      // Remove console.error for production
     } finally {
       setLoading(false);
     }
@@ -67,7 +68,7 @@ function Search() {
       setSearchResults(results);
     } catch (err) {
       setError("Error occurred while searching users");
-      console.error(err);
+      // Remove console.error for production
     } finally {
       setLoading(false);
     }
@@ -131,21 +132,23 @@ function Search() {
         <div className="flex space-x-4 border-b border-gray-200">
           <button
             onClick={() => setSearchMode("basic")}
-            className={`py-2 px-4 border-b-2 font-medium text-sm ${
+            className={`py-2 px-4 border-b-2 font-medium text-sm transition-colors ${
               searchMode === "basic"
                 ? "border-blue-500 text-blue-600"
                 : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
             }`}
+            aria-pressed={searchMode === "basic"}
           >
             Basic Search
           </button>
           <button
             onClick={() => setSearchMode("advanced")}
-            className={`py-2 px-4 border-b-2 font-medium text-sm ${
+            className={`py-2 px-4 border-b-2 font-medium text-sm transition-colors ${
               searchMode === "advanced"
                 ? "border-blue-500 text-blue-600"
                 : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
             }`}
+            aria-pressed={searchMode === "advanced"}
           >
             Advanced Search
           </button>
@@ -161,12 +164,13 @@ function Search() {
               placeholder="Enter GitHub username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              aria-label="GitHub username"
             />
             <button
               type="submit"
-              disabled={loading}
-              className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={loading || !username.trim()}
+              className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {loading ? "Searching..." : "Search"}
             </button>
@@ -188,7 +192,7 @@ function Search() {
                 placeholder="Enter username"
                 value={advancedSearch.username}
                 onChange={(e) => handleAdvancedInputChange("username", e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
               />
             </div>
             <div>
@@ -201,7 +205,7 @@ function Search() {
                 placeholder="e.g., San Francisco"
                 value={advancedSearch.location}
                 onChange={(e) => handleAdvancedInputChange("location", e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
               />
             </div>
             <div>
@@ -215,7 +219,7 @@ function Search() {
                 placeholder="e.g., 10"
                 value={advancedSearch.minRepos}
                 onChange={(e) => handleAdvancedInputChange("minRepos", e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
               />
             </div>
           </div>
@@ -223,14 +227,14 @@ function Search() {
             <button
               type="submit"
               disabled={loading}
-              className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {loading ? "Searching..." : "Advanced Search"}
             </button>
             <button
               type="button"
               onClick={handleClear}
-              className="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              className="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
             >
               Clear
             </button>
@@ -240,7 +244,7 @@ function Search() {
 
       {/* Loading State */}
       {loading && (
-        <div className="flex items-center justify-center py-8">
+        <div className="flex items-center justify-center py-8" role="status" aria-live="polite">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
           <span className="ml-2 text-gray-600">Loading...</span>
         </div>
@@ -248,7 +252,7 @@ function Search() {
 
       {/* Error State */}
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6" role="alert">
           <p className="text-red-600">{error}</p>
         </div>
       )}
@@ -259,8 +263,9 @@ function Search() {
           <div className="flex items-start space-x-4">
             <img
               src={userData.avatar_url}
-              alt={userData.login}
+              alt={`${userData.login}'s avatar`}
               className="w-24 h-24 rounded-full border-2 border-gray-200"
+              loading="lazy"
             />
             <div className="flex-1">
               <h2 className="text-xl font-bold text-gray-900">
@@ -273,7 +278,7 @@ function Search() {
               <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-4">
                 {userData.location && (
                   <span className="flex items-center">
-                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                       <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                     </svg>
                     {userData.location}
@@ -287,10 +292,10 @@ function Search() {
                 href={userData.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                className="inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 View Profile
-                <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                   <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
                   <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
                 </svg>
@@ -321,8 +326,9 @@ function Search() {
                     <div className="flex items-start space-x-4">
                       <img
                         src={user.avatar_url}
-                        alt={user.login}
+                        alt={`${user.login}'s avatar`}
                         className="w-16 h-16 rounded-full border-2 border-gray-200"
+                        loading="lazy"
                       />
                       <div className="flex-1 min-w-0">
                         <h4 className="text-lg font-semibold text-gray-900 truncate">
@@ -335,7 +341,7 @@ function Search() {
                         <div className="flex flex-wrap gap-3 text-sm text-gray-600 mb-3">
                           {user.location && (
                             <span className="flex items-center">
-                              <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                              <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                                 <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                               </svg>
                               {user.location}
@@ -348,10 +354,10 @@ function Search() {
                           href={user.html_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium"
+                          className="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
                         >
                           View Profile
-                          <svg className="w-3 h-3 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-3 h-3 ml-1" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                             <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
                             <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
                           </svg>
@@ -368,7 +374,7 @@ function Search() {
                   <button
                     onClick={handleLoadMore}
                     disabled={loading}
-                    className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     {loading ? "Loading..." : "Load More"}
                   </button>

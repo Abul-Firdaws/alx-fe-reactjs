@@ -1,3 +1,4 @@
+import Search from "./components/Search";
 import Hello from './components/Hello';
 import './App.css'
 
@@ -9,6 +10,8 @@ function App() {
       </header>
       <main>
         <p>App setup successful. Ready for further development.</p>
+        <Hello/>
+        <Search/>
       </main>
       <footer>
         <small>© 2025 GitHub User Search</small>

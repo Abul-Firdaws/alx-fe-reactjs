@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "https://api.github.com/users";
-const SEARCH_URL = "https://api.github.com/search/users";
+const SEARCH_URL = "https://api.github.com/search/users?q";
 
 // Original function for basic user search (maintaining compatibility)
 export async function fetchUserData(username) {
@@ -43,13 +43,12 @@ export async function searchUsers(searchParams) {
     
     // Make API request with pagination support
     const params = {
-      q: queryString,
       per_page: searchParams.perPage || 10,
       page: searchParams.page || 1,
       sort: 'best-match' // You can also use 'followers', 'repositories', 'joined'
     };
     
-    const response = await axios.get(SEARCH_URL, { params });
+    const response = await axios.get(`${SEARCH_URL}${encodeURIComponent(queryString)}`, { params });
     return response.data;
   } catch (error) {
     console.error('Search users error:', error);

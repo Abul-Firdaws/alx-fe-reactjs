@@ -3,7 +3,7 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/150",
+    "image": "https://images.unsplash.com/photo-1719250726371-b4076d48ce6c?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "ingredients": [
       "200g spaghetti",
       "100g pancetta or bacon, diced",
@@ -26,7 +26,7 @@
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/150",
+    "image": "https://images.pexels.com/photos/9609840/pexels-photo-9609840.jpeg",
     "ingredients": [
       "500g boneless chicken, cut into cubes",
       "1 cup yogurt",
@@ -57,7 +57,7 @@
     "id": 3,
     "title": "Beef Stroganoff",
     "summary": "Tender beef strips in a creamy mushroom sauce, served with pasta or rice.",
-    "image": "https://via.placeholder.com/150",
+    "image": "https://images.pexels.com/photos/3997609/pexels-photo-3997609.jpeg",
     "ingredients": [
       "500g beef sirloin, thinly sliced",
       "1 onion, finely chopped",
@@ -86,7 +86,7 @@
     "id": 4,
     "title": "Ghana Jollof",
     "summary": "Tender beef strips in fish sauce, served with hot shito and tilapia.",
-    "image": "https://via.placeholder.com/150",
+    "image": "https://nyonyogh.com/wp-content/uploads/2024/01/DSC_5633.jpg",
     "ingredients": [
       "2 cups long-grain parboiled rice",
       "1/4 cup vegetable oil",

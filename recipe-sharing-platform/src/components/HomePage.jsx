@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function HomePage() {
@@ -19,9 +20,11 @@ function HomePage() {
       {/* Grid layout for recipes */}
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {recipes.map((recipe) => (
-          <div
+          <Link
             key={recipe.id}
-            className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transform hover:scale-105 transition duration-200"
+            to={`/recipe/${recipe.id}`}
+            className="bg-white rounded-lg shadow-md overflow-hidden 
+            hover:shadow-xl transform hover:scale-105 transition duration-200"
           >
             <img
               src={recipe.image}
@@ -37,7 +40,7 @@ function HomePage() {
                 View Recipe →
               </button>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

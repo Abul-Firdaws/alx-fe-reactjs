@@ -3,24 +3,114 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta or bacon, diced",
+      "2 large eggs",
+      "50g Pecorino Romano cheese, grated",
+      "50g Parmesan cheese, grated",
+      "2 cloves garlic, peeled and left whole",
+      "Salt and black pepper to taste",
+      "Fresh parsley, chopped (optional)"
+    ],
+    "instructions": [
+      "Boil spaghetti in salted water until al dente.",
+      "Cook pancetta in a pan until crispy.",
+      "Whisk eggs with parmesan cheese.",
+      "Mix pasta with pancetta, then remove from heat.",
+      "Quickly stir in egg mixture and season with pepper."
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "500g boneless chicken, cut into cubes",
+      "1 cup yogurt",
+      "2 tbsp lemon juice",
+      "2 tsp ground cumin",
+      "2 tsp ground coriander",
+      "1 tsp turmeric",
+      "1 tsp garam masala",
+      "1 tsp chili powder",
+      "2 tbsp vegetable oil",
+      "1 large onion, finely chopped",
+      "3 cloves garlic, minced",
+      "1 tbsp ginger, minced",
+      "400g canned tomatoes",
+      "1 cup heavy cream",
+      "Salt to taste",
+      "Fresh cilantro, chopped (optional)"
+    ],
+    "instructions": [
+      "Marinate chicken in yogurt, lemon juice, and spices for at least 1 hour.",
+      "Grill or broil chicken until cooked through.",
+      "Sauté onions, garlic, and ginger in oil until golden.",
+      "Add tomatoes and simmer for 15 minutes.",
+      "Stir in cream and cooked chicken, simmer for another 10 minutes."
+  ]  
   },
   {
     "id": 3,
     "title": "Beef Stroganoff",
     "summary": "Tender beef strips in a creamy mushroom sauce, served with pasta or rice.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "500g beef sirloin, thinly sliced",
+      "1 onion, finely chopped",
+      "2 cloves garlic, minced",
+      "250g mushrooms, sliced",
+      "1 cup beef broth",
+      "1 cup sour cream",
+      "2 tbsp flour",
+      "2 tbsp butter",
+      "Salt and black pepper to taste",
+      "Fresh parsley, chopped (optional)",
+      "Cooked egg noodles or rice for serving"
+    ],
+    "instructions": [
+      "Sear beef strips in a hot pan until browned, then set aside.",
+      "Sauté onions and garlic in butter until softened.",
+      "Add mushrooms and cook until tender.",
+      "Sprinkle flour over the vegetables and cook for 1-2 minutes.",
+      "Gradually add beef broth, stirring constantly until the sauce thickens.",
+      "Return beef to the pan and simmer for 5 minutes.",
+      "Stir in sour cream and heat through without boiling.",
+      "Serve over cooked noodles or rice, garnished with parsley."
+    ]
   },
   {
     "id": 4,
     "title": "Ghana Jollof",
     "summary": "Tender beef strips in fish sauce, served with hot shito and tilapia.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "2 cups long-grain parboiled rice",
+      "1/4 cup vegetable oil",
+      "1 large onion, chopped",
+      "2 cloves garlic, minced",
+      "1 tbsp ginger, minced",
+      "1 can (400g) crushed tomatoes",
+      "1/4 cup tomato paste",
+      "2 cups chicken broth",
+      "1 tsp thyme",
+      "1 tsp curry powder",
+      "1 bay leaf",
+      "1-2 Scotch bonnet peppers (optional)",
+      "Salt and black pepper to taste",
+      "Chopped vegetables (carrots, peas, bell peppers) - optional"
+    ],
+    "instructions": [
+      "Rinse rice under cold water until water runs clear, then drain.",
+      "Heat oil in a large pot and sauté onions, garlic, and ginger until fragrant.",
+      "Add crushed tomatoes and tomato paste, cook for 10-15 minutes until the sauce thickens.",
+      "Add chicken broth, thyme, curry powder, bay leaf, and Scotch bonnet peppers. Bring to a boil.",
+      "Stir in rice and reduce heat to low. Cover and simmer for 20-30 minutes until rice is cooked and liquid is absorbed.",
+      "Fluff rice with a fork and stir in chopped vegetables if using. Cook for an additional 5 minutes.",
+      "Remove bay leaf and Scotch bonnet peppers before serving."
+    ]
   }
 ]

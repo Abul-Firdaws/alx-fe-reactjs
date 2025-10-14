@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 
-// NEW API with real English content!
 const fetchPosts = async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/posts');
   
@@ -9,13 +8,17 @@ const fetchPosts = async () => {
   }
   
   const data = await response.json();
-  return data; // DummyJSON returns posts in a 'posts' property
+  return data;
 };
 
 function PostsComponent() {
   const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ['posts'],
     queryFn: fetchPosts,
+    staleTime: 5000, // Data stays fresh for 5 seconds
+    cacheTime: 10000, // Cache persists for 10 seconds after unused
+    refetchOnWindowFocus: true, // Refetch when window regains focus
+    keepPreviousData: true, // Keep showing old data while fetching new
   });
 
   if (isLoading) {
@@ -96,7 +99,7 @@ function PostsComponent() {
               {post.body}
             </p>
             <div style={{ marginTop: '10px', fontSize: '14px', color: '#6c757d' }}>
-                <span> User ID: {post.userId}</span>
+              <span> User ID: {post.userId}</span>
             </div>
           </div>
         ))}

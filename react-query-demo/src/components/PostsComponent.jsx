@@ -2,14 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 
 // NEW API with real English content!
 const fetchPosts = async () => {
-  const response = await fetch('https://dummyjson.com/posts');
+  const response = await fetch('https://jsonplaceholder.typicode.com/posts');
   
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
   
   const data = await response.json();
-  return data.posts; // DummyJSON returns posts in a 'posts' property
+  return data; // DummyJSON returns posts in a 'posts' property
 };
 
 function PostsComponent() {
@@ -96,9 +96,7 @@ function PostsComponent() {
               {post.body}
             </p>
             <div style={{ marginTop: '10px', fontSize: '14px', color: '#6c757d' }}>
-              <span> {post.reactions.likes} likes</span>
-              <span style={{ marginLeft: '15px' }}> {post.reactions.dislikes} dislikes</span>
-              <span style={{ marginLeft: '15px' }}> {post.views} views</span>
+                <span> User ID: {post.userId}</span>
             </div>
           </div>
         ))}

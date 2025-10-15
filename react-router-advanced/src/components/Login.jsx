@@ -1,6 +1,9 @@
 import { Navigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
-function Login({ login, isAuthenticated }) {
+function Login() {
+  const { isAuthenticated, login } = useAuth();
+
   if (isAuthenticated) {
     return <Navigate to="/profile" replace />;
   }

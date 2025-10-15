@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
-function Navbar({ isAuthenticated, logout }) {
+function Navbar() {
+  const { isAuthenticated, logout } = useAuth();
+
   return (
     <nav style={{
       backgroundColor: '#2c3e50',

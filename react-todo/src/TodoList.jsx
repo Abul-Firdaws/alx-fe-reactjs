@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AddTodoForm from './components/AddTodoForm';
 
 function TodoList() {
   const [todos, setTodos] = useState([
@@ -7,23 +8,13 @@ function TodoList() {
     { id: 3, text: 'Master Testing', completed: false },
   ]);
 
-  const [input, setInput] = useState('');
-
   const addTodo = (text) => {
-    if (text.trim()) {
-      const newTodo = {
+    const newTodo = {
       id: Date.now(),
       text: text,
       completed: false,
     };
     setTodos([...todos, newTodo]);
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addTodo(input);
-    setInput('');
   };
 
   const toggleTodo = (id) => {
@@ -40,54 +31,11 @@ function TodoList() {
 
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-      <h1 style={{ textAlign: 'center', color: '#2c3e50' }}>My Todo List</h1>
+      <h1 style={{ textAlign: 'center', color: '#2c3e50', font: 'bold', fontSize: '50px' }}>Todo List</h1>
       
-      {/* Addd Todo Input */}
-      <form
-        onSubmit={handleSubmit}
-        style={{ 
-          display: 'flex', 
-          gap: '10px',
-          marginBottom: '20px' 
-        }}
-      >
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Add a new todo..."
-          style={{
-            flex: 1,
-            padding: '12px',
-            fontSize: '16px',
-            border: '2px solid #ddd',
-            borderRadius: '4px',
-            outline: 'none',
-          }}
-        />
-        <button
-          type="submit"
-          style={{
-            padding: '12px 24px',
-            backgroundColor: '#3498db',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '16px',
-            fontWeight: 'bold',
-          }}
-        >
-          Add
-        </button>
-      </form>
+      <AddTodoForm addTodo={addTodo} />
 
-      {/* Todo List */}
-      <ul style={{ 
-        listStyle: 'none', 
-        padding: 0 
-        }}
-        >
+      <ul style={{ listStyle: 'none', padding: 0 }}>
         {todos.map((todo) => (
           <li
             key={todo.id}
@@ -115,7 +63,10 @@ function TodoList() {
               {todo.text}
             </span>
             <button
-              onClick={() => deleteTodo(todo.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteTodo(todo.id);
+              }}
               style={{
                 backgroundColor: '#e74c3c',
                 color: 'white',

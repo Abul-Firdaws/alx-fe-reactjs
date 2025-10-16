@@ -1,23 +1,23 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import TodoList from '../components/TodoList';
+import TodoList from '../TodoList';
 
 describe('TodoList Component', () => {
   test('renders TodoList component', () => {
-    render(<TodoList />);
+    render(<TodoList />); 
     const headingElement = screen.getByText(/My Todo List/i);
     expect(headingElement).toBeInTheDocument();
   });
 
   test('displays initial todos', () => {
-    render(<TodoList />);
+    render(<TodoList />);  
     expect(screen.getByText('Learn React')).toBeInTheDocument();
     expect(screen.getByText('Build a Todo App')).toBeInTheDocument();
     expect(screen.getByText('Master Testing')).toBeInTheDocument();
   });
 
   test('adds a new todo', () => {
-    render(<TodoList />);
+    render(<TodoList />);  
     
     const input = screen.getByPlaceholderText(/Add a new todo/i);
     const button = screen.getByRole('button', { name: /Add/i });
@@ -29,7 +29,7 @@ describe('TodoList Component', () => {
   });
 
   test('toggles todo completion status', () => {
-    render(<TodoList />);
+    render(<TodoList />);  
     
     const todoItem = screen.getByText('Learn React');
     
@@ -50,7 +50,7 @@ describe('TodoList Component', () => {
   });
 
   test('deletes a todo', () => {
-    render(<TodoList />);
+    render(<TodoList />);  
     
     const todoItem = screen.getByText('Learn React');
     expect(todoItem).toBeInTheDocument();
@@ -63,7 +63,7 @@ describe('TodoList Component', () => {
   });
 
   test('does not add empty todos', () => {
-    render(<TodoList />);
+    render(<TodoList />);  
     
     const input = screen.getByPlaceholderText(/Add a new todo/i);
     const button = screen.getByRole('button', { name: /Add/i });
@@ -80,7 +80,7 @@ describe('TodoList Component', () => {
   });
 
   test('clears input after adding todo', () => {
-    render(<TodoList />);
+    render(<TodoList />); 
     
     const input = screen.getByPlaceholderText(/Add a new todo/i);
     const button = screen.getByRole('button', { name: /Add/i });

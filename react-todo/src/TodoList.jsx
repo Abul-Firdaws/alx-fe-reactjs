@@ -17,7 +17,9 @@ function TodoList() {
         completed: false,
       };
       setTodos([...todos, newTodo]);
+      return newTodo;
     }
+    return null;
   };
 
   const handleSubmit = (e) => {
@@ -42,7 +44,7 @@ function TodoList() {
     <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
       <h1 style={{ textAlign: 'center', color: '#2c3e50' }}>Todo List</h1>
       
-      {/* AddTodoForm inline */}
+      {/* AddTodoForm */}
       <form
         onSubmit={handleSubmit}
         style={{
@@ -56,6 +58,7 @@ function TodoList() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Add a new todo"
+          data-testid="todo-input"
           style={{
             flex: 1,
             padding: '12px',
@@ -67,6 +70,7 @@ function TodoList() {
         />
         <button
           type="submit"
+          data-testid="add-todo-button"
           style={{
             padding: '12px 24px',
             backgroundColor: '#3498db',
@@ -83,10 +87,11 @@ function TodoList() {
       </form>
 
       {/* Todo List */}
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+      <ul style={{ listStyle: 'none', padding: 0 }} data-testid="todo-list">
         {todos.map((todo) => (
           <li
             key={todo.id}
+            data-testid={`todo-item-${todo.id}`}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -100,6 +105,7 @@ function TodoList() {
           >
             <span
               onClick={() => toggleTodo(todo.id)}
+              data-testid={`todo-text-${todo.id}`}
               style={{
                 flex: 1,
                 cursor: 'pointer',
@@ -112,6 +118,7 @@ function TodoList() {
             </span>
             <button
               onClick={() => deleteTodo(todo.id)}
+              data-testid={`delete-button-${todo.id}`}
               style={{
                 backgroundColor: '#e74c3c',
                 color: 'white',

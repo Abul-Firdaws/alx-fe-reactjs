@@ -83,7 +83,8 @@ export async function searchUsers(searchParams) {
       sort: 'best-match' // You can also use 'followers', 'repositories', 'joined'
     };
     
-    const response = await githubAPI.get(`${SEARCH_URL}${encodeURIComponent(queryString)}`, { params });
+    // FIX: correctly append query string with '='
+    const response = await githubAPI.get(`${SEARCH_URL}=${encodeURIComponent(queryString)}`, { params });
     
     // Ensure we return a consistent structure
     return {

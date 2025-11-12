@@ -18,6 +18,12 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

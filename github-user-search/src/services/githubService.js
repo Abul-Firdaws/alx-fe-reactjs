@@ -3,11 +3,16 @@ import axios from "axios";
 const BASE_URL = "https://api.github.com/users";
 const SEARCH_URL = "https://api.github.com/search/users?q";
 
+// Get GitHub token from environment variables
+const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
+
 // Configure axios with timeout and interceptors for production
 const githubAPI = axios.create({
   timeout: 10000, // 10 second timeout
   headers: {
     'Accept': 'application/vnd.github.v3+json',
+    // Add authorization header if token exists
+    ...(GITHUB_TOKEN && { 'Authorization': `token ${GITHUB_TOKEN}` })
   }
 });
 

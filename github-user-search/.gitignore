@@ -34,4 +34,7 @@ yarn-error.log*
 *.swo
 
 # OS generated files
-Thumbs.db
+Thumbs.db.env
+.env
+.env
+.env

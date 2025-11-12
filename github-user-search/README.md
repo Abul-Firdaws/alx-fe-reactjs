@@ -2,7 +2,7 @@
 
 A modern, responsive web application that allows users to search for GitHub profiles using the GitHub API. Built with React and Tailwind CSS, this application features both basic and advanced search capabilities with a beautiful, intuitive user interface.
 
-![GitHub User Search Demo](./assets/demo-screenshot.png)
+![GitHub User Search Demo](./src/assets/demo-screenshot.png)
 
 ## Features
 
@@ -58,7 +58,7 @@ npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`
+The application is available at `https://mygithub-search.vercel.app/`
 
 ### 4. Build for Production
 
@@ -73,24 +73,23 @@ npm run preview
 ```
 
 ## Project Structure
-
 ```
 github-user-search/
 ├── src/
 │   ├── components/
-│   │   └── Search.jsx          # Main search component
+│   │   └── Search.jsx          
 │   ├── services/
-│   │   └── githubService.js    # GitHub API integration
-│   ├── App.jsx                 # Root component
-│   ├── App.css                 # Global styles
-│   ├── index.css               # Tailwind directives
-│   └── main.jsx                # Application entry point
-├── public/                     # Static assets
-├── index.html                  # HTML template
-├── package.json                # Dependencies and scripts
-├── tailwind.config.js          # Tailwind configuration
-├── postcss.config.js           # PostCSS configuration
-└── vite.config.js              # Vite configuration
+│   │   └── githubService.js    
+│   ├── App.jsx                 
+│   ├── App.css                 
+│   ├── index.css               
+│   └── main.jsx                
+├── public/                     
+├── index.html                  
+├── package.json                
+├── tailwind.config.js          
+├── postcss.config.js           
+└── vite.config.js            
 ```
 
 ## Usage
@@ -98,7 +97,7 @@ github-user-search/
 ### Basic Search
 
 1. Click on the "Basic Search" tab
-2. Enter a GitHub username (e.g., "octocat")
+2. Enter a GitHub username (e.g., "abul-firdaws")
 3. Click "Search" or press Enter
 4. View the user's profile information
 
@@ -107,7 +106,7 @@ github-user-search/
 1. Click on the "Advanced Search" tab
 2. Fill in one or more search criteria:
    - Username
-   - Location (e.g., "San Francisco")
+   - Location (e.g., "San Damongo")
    - Minimum number of repositories (e.g., "10")
 3. Click "Advanced Search"
 4. Browse through the results
@@ -190,9 +189,9 @@ npx tailwindcss init -p
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
 5. Open a Pull Request
 
 ## License

@@ -4,6 +4,12 @@ A modern, responsive web application that allows users to search for GitHub prof
 
 ![GitHub User Search Demo](./src/assets/demo-screenshot.png)
 
+## Live Demo
+
+**[View Live Application](https://mygithub-search.vercel.app/)**
+
+The application is deployed and running on Vercel.
+
 ## Features
 
 - **Basic Search**: Search for GitHub users by their username
@@ -58,7 +64,7 @@ npm install
 npm run dev
 ```
 
-The application is available at `https://mygithub-search.vercel.app/`
+The application will be available available at `http://localhost:5173`
 
 ### 4. Build for Production
 
